@@ -1,0 +1,55 @@
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role
+  createdAt    DateTime @default(now())
+  tickets      Ticket[]
+  replies      Reply[]
+  notifications Notification[]
+}
+
+model Ticket {
+  id          String   @id @default(uuid())
+  subject     String
+  message     String
+  orderNumber Int
+  status      TicketStatus @default(OPEN)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  replies     Reply[]
+  createdAt   DateTime @default(now())
+}
+
+model Reply {
+  id        String   @id @default(uuid())
+  ticketId  String
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  ticketId  String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+}
+
+enum Role {
+  CUSTOMER
+  SUPPORT
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+}
