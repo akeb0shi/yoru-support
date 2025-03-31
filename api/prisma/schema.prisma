@@ -29,6 +29,7 @@ model Ticket {
   userId      String
   user        User     @relation(fields: [userId], references: [id])
   replies     Reply[]
+  notifications Notification[]
   createdAt   DateTime @default(now())
 }
 

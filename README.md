@@ -12,7 +12,7 @@ SHOPIFY_API_TOKEN=REDACTED
 
 # API ROUTES
 ### Admin
-#### Contains middleware to only allow support roles
+- **Contains middleware to only allow support roles**
 - Get: all tickets
 - Get: all users
 - Patch: user permissions
