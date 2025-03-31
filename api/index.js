@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const { PrismaClient } = require('@prisma/client');
+const requireAuth = require('./middleware/requireAuth');
+
 
 const app = express();
 const cors = require('cors');
@@ -60,7 +62,7 @@ app.post('/api/tickets', requireAuth, async (req, res) => {
         subject,
         message,
         orderNumber: parseInt(orderNumber),
-        userId: req.user.id, // assuming you're using requireAuth
+        userId: req.user.id,
       }
     });
 
