@@ -5,6 +5,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import TicketList from './components/Tickets/TicketList';
 import CreateTicket from './components/Tickets/CreateTicket';
+// import Guest from './pages/Guest'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<TicketList />} />
         <Route path="/submit" element={<CreateTicket />} />
+        {/* <Route path="/guest" element={<Guest />} /> */}
       </Routes>
     </Router>
   );

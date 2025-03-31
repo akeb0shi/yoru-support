@@ -1,13 +1,14 @@
 model User {
-  id           String   @id @default(uuid())
-  name         String
-  email        String   @unique
-  passwordHash String
-  role         Role
-  createdAt    DateTime @default(now())
-  tickets      Ticket[]
-  replies      Reply[]
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  passwordHash  String
+  role          Role
+  createdAt     DateTime @default(now())
+  tickets       Ticket[]
+  replies       Reply[]
   notifications Notification[]
+  orders        Order[] 
 }
 
 model Ticket {
@@ -20,6 +21,24 @@ model Ticket {
   user        User     @relation(fields: [userId], references: [id])
   replies     Reply[]
   createdAt   DateTime @default(now())
+}
+
+model Order {
+  orderNumber     Int     @id
+  userId          String
+  user            User    @relation(fields: [userId], references: [id])
+  name            String
+  shippingAddress String
+  billingAddress  String?
+  email           String
+  phone           Int?
+  fulfillment     String
+  tracking        String?
+  items           Json
+  subtotal        Float
+  shippingCost    Float
+  orderRisk       String?
+  timeline        Json
 }
 
 model Reply {
