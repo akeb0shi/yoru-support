@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 
-function Dashboard() { // basic outline for the Dashboard, not used for part 2
+function Dashboard() {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('/api/me', {
+          method: 'GET',
+          credentials: 'include'
+        });
+
+        // Check if response is JSON
+        const isJson = res.headers.get('content-type')?.includes('application/json');
+        const data = isJson ? await res.json() : null;
+
+        if (!res.ok) {
+          throw new Error(data?.error || 'Failed to fetch user info');
+        }
+
+        setUser(data);
+      } catch (err) {
+        setError(err.message);
+        navigate('/login');
+      }
+    };
+
+    fetchUser();
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    await fetch('/api/logout', {
+      method: 'POST',
+      credentials: 'include'
+    });
+    navigate('/login');
+  };
 
   return (
     <div className="dashboard">
@@ -15,9 +50,10 @@ function Dashboard() { // basic outline for the Dashboard, not used for part 2
           <button onClick={handleLogout} className="logout-button">Logout</button>
         </nav>
       </header>
-      
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
       <main className="dashboard-content">
-        {/* outlet will render ticketlist and stuff */}
         <Outlet context={{ user }} />
       </main>
     </div>
