@@ -68,7 +68,7 @@ function TicketList() { // base TicketList creation function
                   <span>Order #: {ticket.orderNumber}</span>
                 )}
                 <span>
-                  {ticket.replies.length} {ticket.replies.length === 1 ? 'reply' : 'replies'}
+                  {ticket.replies?.length || 0} {ticket.replies?.length === 1 ? 'reply' : 'replies'}
                 </span>
                 <span>
                   Created: {new Date(ticket.createdAt).toLocaleDateString()}
