@@ -31,9 +31,9 @@ router.post('/register', async (req, res) => {
       }
     });
 
-    res.status(201).json({ message: 'User registered successfully' });
+    return res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
-    res.status(500).json({ error: 'Registration failed' });
+    return res.status(500).json({ error: 'Registration failed' });
   }
 });
 
@@ -61,9 +61,9 @@ router.post('/login', async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    res.json({ message: 'Logged in successfully' });
+    return res.json({ message: 'Logged in successfully' });
   } catch (err) {
-    res.status(500).json({ error: 'Login failed' });
+    return res.status(500).json({ error: 'Login failed' });
   }
 });
 
@@ -81,9 +81,9 @@ router.get('/me', requireAuth, async (req, res) => {
       select: { id: true, name: true, email: true, role: true }
     });
 
-    res.json(user);
+    return res.json(user);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch user info' });
+    return res.status(500).json({ error: 'Failed to fetch user info' });
   }
 });
 

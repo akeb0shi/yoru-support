@@ -40,8 +40,33 @@ function Login() { // base Login function
         credentials: 'include', // security measure for cookies
         body: JSON.stringify(formData)
       });
-
-      const data = await response.json(); 
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify(formData)
+        });
+      
+        let data;
+        try {
+          data = await response.json();
+        } catch (err) {
+          data = { error: 'Invalid response format from server' };
+        }
+      
+        if (!response.ok) {
+          throw new Error(data.error || 'Login failed');
+        }
+      
+        navigate('/dashboard');
+      } catch (err) {
+        setError(err.message);
+      }
+       
 
       if (!response.ok) { // error check for invalid input
         throw new Error(data.error || 'Login failed');
