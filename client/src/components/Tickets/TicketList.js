@@ -6,26 +6,32 @@ function TicketList() { // base TicketList creation function
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
 
-  useEffect(() => { // get all the tickets
+  useEffect(() => {
     const fetchTickets = async () => {
       try {
         const response = await fetch('/api/tickets', {
           credentials: 'include'
         });
-        
+  
+        const isJson = response.headers
+          .get('content-type')
+          ?.includes('application/json');
+  
+        const data = isJson ? await response.json() : null;
+  
         if (!response.ok) {
-          throw new Error('Cannot get tickets');
+          throw new Error(data?.error || 'Failed to load tickets');
         }
-        
-        const data = await response.json();
+  
         setTickets(data);
       } catch (err) {
         setError(err.message);
       }
     };
-
+  
     fetchTickets();
   }, []);
+  
 
   if (error) {
     return <div className="error">Error: {error}</div>;
