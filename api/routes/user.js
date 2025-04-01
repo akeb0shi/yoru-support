@@ -18,11 +18,13 @@ router.post('/register', async (req, res) => {
 
   try {
     const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) return res.status(400).json({ error: 'Email already registered' });
+    if (existing) {
+      return res.status(400).json({ error: 'Email already registered' });
+    }
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
         email,
         passwordHash,
@@ -32,9 +34,11 @@ router.post('/register', async (req, res) => {
 
     return res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
+    console.error('Registration error:', err);
     return res.status(500).json({ error: 'Registration failed' });
   }
 });
+
 
 // login 
 router.post('/login', async (req, res) => {
