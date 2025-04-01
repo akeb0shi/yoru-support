@@ -12,6 +12,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
 
+  console.log('Received registration:', req.body);
+
   if (!email || !password) {
     return res.status(400).json({ error: 'All fields are required' });
   }

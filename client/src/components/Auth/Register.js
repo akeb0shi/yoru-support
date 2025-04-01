@@ -39,7 +39,7 @@ function Register() {
 
       navigate('/dashboard');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Something went wrong');
     }
   };
 
