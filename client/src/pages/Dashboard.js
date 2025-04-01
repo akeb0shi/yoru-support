@@ -1,20 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Outlet, useNavigate, Link } from 'react-router-dom';
 
 function Dashboard() { // basic outline for the Dashboard, not used for part 2
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <header>
+    <div className="dashboard">
+      <header className="dashboard-header">
         <h1>Yoru Apparel Support Dashboard</h1>
-        <nav>
-          <Link to="/dashboard">My Tickets</Link> | 
-          <Link to="/submit">Create Ticket</Link> | 
-          <Link to="/logout">Logout</Link>
+        <nav className="dashboard-nav">
+          <Link to="/dashboard" className="nav-link">My Tickets</Link>
+          <Link to="/submit" className="nav-link">Create Ticket</Link>
+          <button onClick={handleLogout} className="logout-button">Logout</button>
         </nav>
       </header>
       
-      <main>
-        {/* To be implemented in a later part of the project */}
+      <main className="dashboard-content">
+        {/* outlet will render ticketlist and stuff */}
+        <Outlet context={{ user }} />
       </main>
     </div>
   );
