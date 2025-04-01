@@ -51,7 +51,6 @@ function Dashboard() {
         </nav>
       </header>
 
-<<<<<<< HEAD
       <main className="dashboard-content">
         {error && <div className="error-banner">{error}</div>}
         
@@ -68,12 +67,6 @@ function Dashboard() {
 
         {/* outlet for future stuff */}
         <Outlet />
-=======
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <main className="dashboard-content">
-        <Outlet context={{ user }} />
->>>>>>> f214e609287c07c5401bc1f5484fb540d6af15ca
       </main>
     </div>
   );
