@@ -8,17 +8,30 @@ function Dashboard() { // basic outline for the Dashboard, not used for part 2
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Yoru Apparel Support Dashboard</h1>
-        <nav className="dashboard-nav">
-          <Link to="/dashboard" className="nav-link">My Tickets</Link>
-          <Link to="/submit" className="nav-link">Create Ticket</Link>
-          <button onClick={handleLogout} className="logout-button">Logout</button>
+        <h1>Yoru Apparel Support</h1>
+        <nav>
+          <Link to="/dashboard">Dashboard</Link> | 
+          <Link to="/submit">New Ticket</Link> | 
+          <button onClick={handleLogout} className="logout-btn">Logout</button>
         </nav>
       </header>
-      
+
       <main className="dashboard-content">
-        {/* outlet will render ticketlist and stuff */}
-        <Outlet context={{ user }} />
+        {error && <div className="error-banner">{error}</div>}
+        
+        {/* placeholder */}
+        <div className="ticket-list-placeholder">
+          <h2>Your Support Tickets</h2>
+          <p>Temp</p>
+          <div className="mock-ticket">
+            <h3>Sample Ticket #1001</h3>
+            <p>Status: Open</p>
+            <p>Created: {new Date().toLocaleDateString()}</p>
+          </div>
+        </div>
+
+        {/* outlet for future stuff */}
+        <Outlet />
       </main>
     </div>
   );
