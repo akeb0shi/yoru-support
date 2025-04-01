@@ -10,32 +10,37 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 // register new user
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!name || !email || !password) {
+  console.log('Received registration:', req.body);
+
+  if (!email || !password) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) return res.status(400).json({ error: 'Email already registered' });
+    if (existing) {
+      return res.status(400).json({ error: 'Email already registered' });
+    }
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
-        name,
         email,
         passwordHash,
         role: 'CUSTOMER',
       }
     });
 
-    res.status(201).json({ message: 'User registered successfully' });
+    return res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
-    res.status(500).json({ error: 'Registration failed' });
+    console.error('Registration error:', err);
+    return res.status(500).json({ error: 'Registration failed' });
   }
 });
+
 
 // login 
 router.post('/login', async (req, res) => {
@@ -61,9 +66,9 @@ router.post('/login', async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    res.json({ message: 'Logged in successfully' });
+    return res.json({ message: 'Logged in successfully' });
   } catch (err) {
-    res.status(500).json({ error: 'Login failed' });
+    return res.status(500).json({ error: 'Login failed' });
   }
 });
 
@@ -81,9 +86,9 @@ router.get('/me', requireAuth, async (req, res) => {
       select: { id: true, name: true, email: true, role: true }
     });
 
-    res.json(user);
+    return res.json(user);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch user info' });
+    return res.status(500).json({ error: 'Failed to fetch user info' });
   }
 });
 
