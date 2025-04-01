@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() { // base Register function
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: ''
   });
@@ -26,7 +25,7 @@ function Register() { // base Register function
     setError(''); // error message template
 
     // check all fields are filled in
-    if (!formData.name || !formData.email || !formData.password) {
+    if (!formData.email || !formData.password) {
       setError('All fields are required');
       return;
     }
@@ -42,7 +41,6 @@ function Register() { // base Register function
         },
         credentials: 'include', // security measure for cookies
         body: JSON.stringify({
-          name: formData.name,
           email: formData.email,
           password: formData.password
         })
@@ -66,16 +64,6 @@ function Register() { // base Register function
       <h2>Register</h2> 
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={formChange}
-            required
-          />
-        </div>
         <div>
           <label>Email:</label>
           <input
