@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 
-function Dashboard() { // basic outline for the Dashboard, not used for part 2
+function Dashboard() {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('/api/me', {
+          method: 'GET',
+          credentials: 'include'
+        });
+
+        // Check if response is JSON
+        const isJson = res.headers.get('content-type')?.includes('application/json');
+        const data = isJson ? await res.json() : null;
+
+        if (!res.ok) {
+          throw new Error(data?.error || 'Failed to fetch user info');
+        }
+
+        setUser(data);
+      } catch (err) {
+        setError(err.message);
+        navigate('/login');
+      }
+    };
+
+    fetchUser();
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    await fetch('/api/logout', {
+      method: 'POST',
+      credentials: 'include'
+    });
+    navigate('/login');
+  };
 
   return (
     <div className="dashboard">
@@ -16,6 +51,7 @@ function Dashboard() { // basic outline for the Dashboard, not used for part 2
         </nav>
       </header>
 
+<<<<<<< HEAD
       <main className="dashboard-content">
         {error && <div className="error-banner">{error}</div>}
         
@@ -32,6 +68,12 @@ function Dashboard() { // basic outline for the Dashboard, not used for part 2
 
         {/* outlet for future stuff */}
         <Outlet />
+=======
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <main className="dashboard-content">
+        <Outlet context={{ user }} />
+>>>>>>> f214e609287c07c5401bc1f5484fb540d6af15ca
       </main>
     </div>
   );
