@@ -31,7 +31,7 @@ function TicketList() { // base TicketList creation function
     return <div className="error">Error: {error}</div>;
   }
 
-  if (tickets.length === 0) { // for if there are no tickets
+  if (tickets === null || tickets.length === 0) { // for if there are no tickets
     return (
       <div className="empty-tickets">
         <p>No tickets found.</p>
