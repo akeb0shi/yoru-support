@@ -37,7 +37,7 @@ function Login() { // base Login function
         headers: {
           'Content-Type': 'application/json'
         },
-        credentials: 'include', // security measure for cookies
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
       

@@ -59,10 +59,19 @@ router.post('/login', async (req, res) => {
       { expiresIn: '7d' }
     );
 
+    // OLD RES COOKIE CODE
+    // res.cookie('auth_token', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   sameSite: 'lax',
+    //   maxAge: 7 * 24 * 60 * 60 * 1000
+    // });
+
+    // new res cookie code (apr 2)
     res.cookie('auth_token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 

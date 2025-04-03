@@ -47,7 +47,7 @@ function CreateTicket() { // base Ticket creation function
         headers: {
           'Content-Type': 'application/json'
         },
-        credentials: 'include', // security measure for cookies
+        credentials: 'include',
         body: JSON.stringify({
           subject: formData.subject,
           message: formData.message,
