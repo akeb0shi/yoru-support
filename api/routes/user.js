@@ -12,8 +12,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
 
-  console.log('Received registration:', req.body);
-
   if (!email || !password) {
     return res.status(400).json({ error: 'All fields are required' });
   }
@@ -36,7 +34,7 @@ router.post('/register', async (req, res) => {
 
     return res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
-    console.error('Registration error:', err);
+    console.error('🔥 Registration error:', err); // ✅ this is key
     return res.status(500).json({ error: 'Registration failed' });
   }
 });
