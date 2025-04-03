@@ -32,7 +32,7 @@ function Login() { // base Login function
 
     try {
       // send login request to API
-      const response = await fetch('/api/login', {
+      const response = await fetch('https://support-9hv8.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ function Login() { // base Login function
       });
       
       try {
-        const response = await fetch('/api/login', {
+        const response = await fetch('https://support-9hv8.onrender.com/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

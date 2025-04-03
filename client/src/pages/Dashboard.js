@@ -9,7 +9,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch('/api/me', {
+        const res = await fetch('https://support-9hv8.onrender.com/api/me', {
           method: 'GET',
           credentials: 'include'
         });
@@ -33,7 +33,7 @@ function Dashboard() {
   }, [navigate]);
 
   const handleLogout = async () => {
-    await fetch('/api/logout', {
+    await fetch('https://support-9hv8.onrender.com/api/logout', {
       method: 'POST',
       credentials: 'include'
     });

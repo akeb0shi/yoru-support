@@ -9,7 +9,7 @@ function TicketList() { // base TicketList creation function
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch('/api/tickets', {
+        const response = await fetch('https://support-9hv8.onrender.com/api/tickets', {
           credentials: 'include'
         });
   

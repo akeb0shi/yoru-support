@@ -42,7 +42,7 @@ function CreateTicket() { // base Ticket creation function
 
     try { 
       // send ticket submission request to API
-      const response = await fetch('/api/tickets', {
+      const response = await fetch('https://support-9hv8.onrender.com/api/tickets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

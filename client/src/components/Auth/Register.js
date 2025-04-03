@@ -21,7 +21,7 @@ function Register() {
     }
 
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('https://support-9hv8.onrender.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

@@ -1,42 +1,45 @@
 website: https://yoru-support.onrender.com/
 
+## Part 2 push comment
+"Merge branch 'main' of https://github.com/akeb0shi/yoru-support"
+
 ## Back-end deployed on Render, front-end hosted on Render, Database deployed on Railway
 
-### .env file data is stored on the cloud through Render, it contains a sensitive API token, so it has not been uploaded to Github. Below is the .env file format, with sensitive bits of information redacted. 
+## .env file data is stored on the cloud through Render, it contains a sensitive API token, so it has not been uploaded to Github. Below is the .env file format, with sensitive bits of information redacted. 
 
 #### === DATABASE ===
-DATABASE_URL="REDACTED"\
+DATABASE_URL="REDACTED"
 
 #### === AUTHENTICATION ===
 COOKIE_NAME="auth_token"\
 COOKIE_SECURE=true\
 NODE_ENV=production\
-JWT_SECRET="REDACTED"\
+JWT_SECRET="REDACTED"
 
 #### === SHOPIFY API ===
 SHOPIFY_STORE_DOMAIN="yoruapparel.com"\
-SHOPIFY_API_TOKEN=REDACTED\
+SHOPIFY_API_TOKEN=REDACTED
 
 # API ROUTES
-### Admin
+### admin.js
 - **Contains middleware to only allow support roles**
 - Get: all tickets
 - Get: all users
 - Patch: user permissions
 
-### Notification
+### notification.js
 - Get: all unread messages of current user
 - Post: Mark all as read
 
-### Order
+### order.js
 - Get: all orders
 - Get: specific order
 
-### Reply
+### reply.js
 - Post: add reply
 - Get: all replies
 
-### Ticket
+### ticket.js
 - Post: Create new ticket
 - Get: All tickets
     - support: all user tickets
@@ -45,7 +48,7 @@ SHOPIFY_API_TOKEN=REDACTED\
 - Patch: Ticket status
 - Delete: Ticket (support only)
 
-### User
+### user.js
 - Post: Register new user
 - Post: Login
 - Post: Logout
