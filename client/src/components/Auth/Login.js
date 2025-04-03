@@ -51,21 +51,19 @@ function Login() { // base Login function
           body: JSON.stringify(formData)
         });
       
-        let data;
-        try {
-          data = await response.json();
-        } catch (err) {
-          data = { error: 'Invalid response format from server' };
-        }
+        const isJson = response.headers.get('content-type')?.includes('application/json');
+        const data = isJson ? await response.json() : null;
       
         if (!response.ok) {
-          throw new Error(data.error || 'Login failed');
+          throw new Error(data?.error || 'Login failed');
         }
       
         navigate('/dashboard');
+      
       } catch (err) {
-        setError(err.message);
+        setError(err.message || 'Something went wrong');
       }
+      
        
 
       if (!response.ok) { // error check for invalid input
