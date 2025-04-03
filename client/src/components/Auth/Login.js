@@ -53,7 +53,7 @@ function Login() { // base Login function
     //   setError('Email and password are required');
     //   return;
     // }
-    //
+
     // try {
     //   const response = await fetch('https://support-9hv8.onrender.com/api/login', {
     //     method: 'POST',
@@ -89,14 +89,14 @@ function Login() { // base Login function
       
        
 
-      if (!response.ok) { 
-        throw new Error(data.error || 'Login failed');
-      }
+    //   if (!response.ok) { 
+    //     throw new Error(data.error || 'Login failed');
+    //   }
 
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.message);
-    }
+    //   navigate('/dashboard');
+    // } catch (err) {
+    //   setError(err.message);
+    // }
   };
 
   return ( 
