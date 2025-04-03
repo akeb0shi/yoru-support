@@ -22,16 +22,9 @@ function Login() { // base Login function
   // handles when a login form is submitted
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // error message template
-    
-    // check that both fields are filled in
-    if (!formData.email || !formData.password) {
-      setError('Email and password are required');
-      return;
-    }
+    setError(''); 
 
     try {
-      // send login request to API
       const response = await fetch('https://support-9hv8.onrender.com/api/login', {
         method: 'POST',
         headers: {
@@ -40,44 +33,73 @@ function Login() { // base Login function
         credentials: 'include',
         body: JSON.stringify(formData)
       });
-      
-      try {
-        const response = await fetch('https://support-9hv8.onrender.com/api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include',
-          body: JSON.stringify(formData)
-        });
-      
-        const isJson = response.headers.get('content-type')?.includes('application/json');
-        const data = isJson ? await response.json() : null;
-      
-        if (!response.ok) {
-          throw new Error(data?.error || 'Login failed');
-        }
-      
-        navigate('/dashboard');
-      
-      } catch (err) {
-        setError(err.message || 'Something went wrong');
+  
+      const isJson = response.headers.get('content-type')?.includes('application/json');
+      const data = isJson ? await response.json() : null;
+  
+      if (!response.ok) {
+        throw new Error(data?.error || 'Login failed');
       }
+  
+      // Success
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.message || 'Something went wrong');
+    }
+  
+    
+    // old handle code
+    // if (!formData.email || !formData.password) {
+    //   setError('Email and password are required');
+    //   return;
+    // }
+    //
+    // try {
+    //   const response = await fetch('https://support-9hv8.onrender.com/api/login', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     credentials: 'include',
+    //     body: JSON.stringify(formData)
+    //   });
+      
+    //   try {
+    //     const response = await fetch('https://support-9hv8.onrender.com/api/login', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       credentials: 'include',
+    //       body: JSON.stringify(formData)
+    //     });
+      
+    //     const isJson = response.headers.get('content-type')?.includes('application/json');
+    //     const data = isJson ? await response.json() : null;
+      
+    //     if (!response.ok) {
+    //       throw new Error(data?.error || 'Login failed');
+    //     }
+      
+    //     navigate('/dashboard');
+      
+    //   } catch (err) {
+    //     setError(err.message || 'Something went wrong');
+    //   }
       
        
 
-      if (!response.ok) { // error check for invalid input
+      if (!response.ok) { 
         throw new Error(data.error || 'Login failed');
       }
 
-      // go to dashboard on successful login
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);
     }
   };
 
-  return ( // basic formatting for output 
+  return ( 
     <div>
       <h2>Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
