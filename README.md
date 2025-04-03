@@ -1,7 +1,20 @@
 website: https://yoru-support.onrender.com/
 
-## Part 2 submission comment
+## Part 2 submission `git commit -m` comment
 "Merge branch 'main' of https://github.com/akeb0shi/yoru-support"
+
+## Sample logins
+**Admin login (can view all tickets)**\
+U: yoru.yarns@gmail.com\
+P: Woah!ThisWorks_556
+
+**User login (can only see their ticket)**\
+U: dylan.z.kao@gmail.com\
+P: 12345
+
+**User login 2**\
+U: watson.maung@gmail.com\
+P: 1qaz2wsx
 
 ## Back-end deployed on Render, front-end hosted on Render, Database deployed on Railway
 

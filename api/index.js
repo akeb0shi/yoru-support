@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = ['https://yoruapparel.com', 'https://www.yoruapparel.com', 'https://yoru-support.onrender.com', 'https://support-9hv8.onrender.com'];
 
 const userRoutes = require('./routes/user');
+const ticketRoutes = require('./routes/ticket'); 
 
 
 // Middleware
@@ -49,6 +50,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api', userRoutes);
+app.use('/api/tickets', ticketRoutes);
 
 
 // Test endpoint
