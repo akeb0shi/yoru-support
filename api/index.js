@@ -12,23 +12,44 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = ['https://yoruapparel.com', 'https://www.yoruapparel.com', 'https://yoru-support.onrender.com', 'https://support-9hv8.onrender.com'];
 
 const userRoutes = require('./routes/user');
-app.use('/api', userRoutes);
 
 
 // Middleware
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       console.log('✅ CORS allowed');
+//       callback(null, true);
+//     } else {
+//       console.log('❌ CORS blocked');
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+// }));
+
+
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
+  origin: 'https://yoru-support.onrender.com',
+  credentials: true
 }));
 
-app.use(express.json());
+// app.options('*', cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true
+// }));
+
 app.use(cookieParser());
+app.use(express.json());
+
+app.use('/api', userRoutes);
+
 
 // Test endpoint
 app.get('/ping', (req, res) => {
