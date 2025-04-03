@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ name: '',email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -48,6 +48,16 @@ function Register() {
       <h2>Register</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
+      <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={formChange}
+            required
+          />
+        </div>
         <div>
           <label>Email:</label>
           <input
