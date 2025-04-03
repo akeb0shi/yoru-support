@@ -9,7 +9,7 @@ const app = express();
 const cors = require('cors');
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
-const allowedOrigins = ['https://yoruapparel.com', 'https://www.yoruapparel.com'];
+const allowedOrigins = ['https://yoruapparel.com', 'https://www.yoruapparel.com', 'https://yoru-support.onrender.com', 'https://support-9hv8.onrender.com'];
 
 
 // Middleware

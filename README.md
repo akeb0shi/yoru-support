@@ -1,6 +1,6 @@
 website: https://yoru-support.onrender.com/
 
-## Part 2 push comment
+## Part 2 submission comment
 "Merge branch 'main' of https://github.com/akeb0shi/yoru-support"
 
 ## Back-end deployed on Render, front-end hosted on Render, Database deployed on Railway
