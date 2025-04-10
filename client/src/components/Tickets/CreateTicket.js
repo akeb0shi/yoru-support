@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import 'CreateTicket.css';
+import './CreateTicket.css';
 
 function CreateTicket() { // base Ticket creation function
   const [formData, setFormData] = useState({
