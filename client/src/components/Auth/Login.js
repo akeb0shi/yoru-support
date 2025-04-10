@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 function Login() { // base Login function
@@ -103,7 +103,6 @@ function Login() { // base Login function
 
         <div className="login-footer">
           <p>Don't have an account? <Link to="/register" className="register-link">Register here</Link></p>
-          {/* <p className="guest-link">Or <Link to="/guest">Continue as guest</Link></p> */}
         </div>
       </div>
     </div>
