@@ -5,6 +5,7 @@ import './TicketList.css';
 
 function TicketList() { // base TicketList creation function
   const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -27,13 +28,23 @@ function TicketList() { // base TicketList creation function
         setTickets(data);
       } catch (err) {
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
   
     fetchTickets();
   }, []);
-  
 
+  if (loading) {
+    return (
+      <div className="loading-state">
+        <div className="spinner"></div>
+        <p>Loading tickets...</p>
+      </div>
+    );
+  }
+  
   if (error) {
     return <div className="error">Error: {error}</div>;
   }
