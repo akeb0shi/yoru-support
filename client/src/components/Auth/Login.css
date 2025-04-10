@@ -86,18 +86,11 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 1rem;
   }
   
   .login-button:hover {
     background-color: #4338ca;
-  }
-  
-  .login-button:disabled {
-    background-color: #a5b4fc;
-    cursor: not-allowed;
   }
   
   .login-footer {

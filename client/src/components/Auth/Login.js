@@ -97,6 +97,7 @@ function Login() { // base Login function
               type="submit" 
               className="login-button"
             >
+              Login
             </button>
           </div>
         </form>

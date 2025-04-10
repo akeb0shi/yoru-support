@@ -106,6 +106,7 @@ function Register() {
               type="submit" 
               className="register-button"
             >
+              Create Account
             </button>
           </div>
         </form>
