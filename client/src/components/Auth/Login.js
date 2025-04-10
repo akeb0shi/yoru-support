@@ -72,7 +72,7 @@ function Login() { // base Login function
               name="email"
               className="form-input"
               value={formData.email}
-              onChange={handleChange}
+              onChange={formChange}
               required
               autoComplete="username"
             />
@@ -86,7 +86,7 @@ function Login() { // base Login function
               name="password"
               className="form-input"
               value={formData.password}
-              onChange={handleChange}
+              onChange={formChange}
               required
               autoComplete="current-password"
             />

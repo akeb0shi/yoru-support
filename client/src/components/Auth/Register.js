@@ -67,7 +67,7 @@ function Register() {
               name="name"
               className="form-input"
               value={formData.name}
-              onChange={handleChange}
+              onChange={formChange}
               required
               autoComplete="name"
             />
@@ -81,7 +81,7 @@ function Register() {
               name="email"
               className="form-input"
               value={formData.email}
-              onChange={handleChange}
+              onChange={formChange}
               required
               autoComplete="email"
             />
@@ -95,7 +95,7 @@ function Register() {
               name="password"
               className="form-input"
               value={formData.password}
-              onChange={handleChange}
+              onChange={formChange}
               required
               autoComplete="new-password"
             />
