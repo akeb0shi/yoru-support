@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './TicketList.css';
 
 
 function TicketList() { // base TicketList creation function
@@ -49,28 +50,28 @@ function TicketList() { // base TicketList creation function
   }
 
   return ( // formatting for the tickets
-    <div className="ticket-list">
-      <h2>Your Support Tickets</h2>
-      
-      <ul className="tickets">
+    <div className="ticket-list-container">
+      <h2 className="ticket-list-title">Your Support Tickets</h2>
+    
+      <ul className="ticket-list">
         {tickets.map(ticket => (
-          <li key={ticket.id} className="ticket-item">
+          <li key={ticket.id} className="ticket-list-item">
             <Link to={`/tickets/${ticket.id}`} className="ticket-link">
               <div className="ticket-header">
-                <h3>{ticket.subject}</h3>
-                <span className={`status-badge ${ticket.status.toLowerCase()}`}>
+                <h3 className="ticket-subject">{ticket.subject}</h3>
+                <span className={`ticket-status status-${ticket.status.toLowerCase()}`}>
                   {ticket.status}
                 </span>
               </div>
               
               <div className="ticket-meta">
                 {ticket.orderNumber && (
-                  <span>Order #: {ticket.orderNumber}</span>
+                  <span className="ticket-order-number">Order #: {ticket.orderNumber}</span>
                 )}
-                <span>
+                <span className="ticket-replies">
                   {ticket.replies?.length || 0} {ticket.replies?.length === 1 ? 'reply' : 'replies'}
                 </span>
-                <span>
+                <span className="ticket-date">
                   Created: {new Date(ticket.createdAt).toLocaleDateString()}
                 </span>
               </div>

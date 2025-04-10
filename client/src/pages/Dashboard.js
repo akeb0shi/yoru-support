@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
+import './Dashboard.css';
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -41,32 +42,31 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-container">
       <header className="dashboard-header">
-        <h1>Yoru Apparel Support</h1>
-        <nav>
-          <Link to="/dashboard">Dashboard</Link> | 
-          <Link to="/submit">New Ticket</Link> | 
-          <button onClick={handleLogout} className="logout-btn">Logout</button>
-        </nav>
+        <div className="header-content">
+          <h1 className="logo">Yoru Apparel Support</h1>
+          <nav className="dashboard-nav">
+            <Link to="/dashboard" className="nav-link">My Tickets</Link>
+            <Link to="/submit" className="nav-link">Create Ticket</Link>
+            <button onClick={handleLogout} className="logout-btn">Logout</button>
+          </nav>
+        </div>
       </header>
 
-      <main className="dashboard-content">
-        {error && <div className="error-banner">{error}</div>}
-        
-        {/* placeholder */}
-        <div className="ticket-list-placeholder">
-          <h2>Your Support Tickets</h2>
-          <p>Temp</p>
-          <div className="mock-ticket">
-            <h3>Sample Ticket #1001</h3>
-            <p>Status: Open</p>
-            <p>Created: {new Date().toLocaleDateString()}</p>
+      <main className="main-content">
+        {error && (
+          <div className="error-state">
+            <svg className="error-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {error}
           </div>
+        )}
+        
+        <div className="content-card">
+          <Outlet context={{ user }} />
         </div>
-
-        {/* outlet for future stuff */}
-        <Outlet />
       </main>
     </div>
   );

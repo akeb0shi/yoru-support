@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'CreateTicket.css';
 
 function CreateTicket() { // base Ticket creation function
   const [formData, setFormData] = useState({
@@ -70,49 +71,52 @@ function CreateTicket() { // base Ticket creation function
   };
 
   return (
-    <div className="create-ticket">
-      <h2>Create New Support Ticket</h2>
+    <div className="create-ticket-container">
+      <h2 className="create-ticket-title">Create New Support Ticket</h2>
       
       {error && (
-        <div className="error-message">
+        <div className="create-ticket-error">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="ticket-form">
+      <form onSubmit={handleSubmit} className="create-ticket-form">
         <div className="form-group">
-          <label htmlFor="subject">Subject</label>
+          <label htmlFor="subject" className="form-label">Subject*</label>
           <input
             type="text"
             id="subject"
             name="subject"
+            className="form-input"
             value={formData.subject}
-            onChange={ticketChange}
+            onChange={handleChange}
             required
             maxLength="100"
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="message">Message</label>
+          <label htmlFor="message" className="form-label">Message*</label>
           <textarea
             id="message"
             name="message"
+            className="form-textarea"
             value={formData.message}
-            onChange={ticketChange}
+            onChange={handleChange}
             required
             rows="6"
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="orderNumber">Order Number (optional)</label>
+          <label htmlFor="orderNumber" className="form-label">Order Number (optional)</label>
           <input
             type="text"
             id="orderNumber"
             name="orderNumber"
+            className="form-input"
             value={formData.orderNumber}
-            onChange={ticketChange}
+            onChange={handleChange}
             pattern="\d*"
             title="Please enter numbers only"
           />
@@ -124,7 +128,12 @@ function CreateTicket() { // base Ticket creation function
             disabled={isSubmitting}
             className="submit-button"
           >
-            {isSubmitting ? 'Submitting...' : 'Submit Ticket'}
+            {isSubmitting ? (
+              <>
+                <span className="spinner"></span>
+                Submitting...
+              </>
+            ) : 'Submit Ticket'}
           </button>
         </div>
       </form>
