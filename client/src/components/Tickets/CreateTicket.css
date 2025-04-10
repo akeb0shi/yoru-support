@@ -111,12 +111,6 @@
     margin-right: 0.5rem;
   }
   
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
   @media (max-width: 640px) {
     .create-ticket-container {
       padding: 0.5rem;
