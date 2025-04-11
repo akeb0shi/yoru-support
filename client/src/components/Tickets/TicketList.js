@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './TicketList.css';
 
 
@@ -7,6 +7,7 @@ function TicketList() { // base TicketList creation function
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -62,34 +63,51 @@ function TicketList() { // base TicketList creation function
 
   return ( // formatting for the tickets
     <div className="ticket-list-container">
-      <h2 className="ticket-list-title">Your Support Tickets</h2>
+      <div className="ticket-list-header">
+        <h2 className="ticket-list-title">Your Support Tickets</h2>
+        <button 
+          onClick={() => navigate('/submit')}
+          className="create-ticket-button"
+        >
+          Create Ticket
+        </button>
+      </div>
     
-      <ul className="ticket-list">
-        {tickets.map(ticket => (
-          <li key={ticket.id} className="ticket-list-item">
-            <Link to={`/tickets/${ticket.id}`} className="ticket-link">
-              <div className="ticket-header">
-                <h3 className="ticket-subject">{ticket.subject}</h3>
-                <span className={`ticket-status status-${ticket.status.toLowerCase()}`}>
-                  {ticket.status}
-                </span>
-              </div>
-              
-              <div className="ticket-meta">
-                {ticket.orderNumber && (
-                  <span className="ticket-order-number">Order #: {ticket.orderNumber}</span>
-                )}
-                <span className="ticket-replies">
-                  {ticket.replies?.length || 0} {ticket.replies?.length === 1 ? 'reply' : 'replies'}
-                </span>
-                <span className="ticket-date">
-                  Created: {new Date(ticket.createdAt).toLocaleDateString()}
-                </span>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {tickets.length === 0 ? (
+        <div className="empty-tickets">
+          <p>No tickets found.</p>
+          <Link to="/submit" className="create-ticket-link">
+            Create your first ticket
+          </Link>
+        </div>
+      ) : (
+        <ul className="ticket-list">
+          {tickets.map(ticket => (
+            <li key={ticket.id} className="ticket-list-item">
+              <Link to={`/tickets/${ticket.id}`} className="ticket-link">
+                <div className="ticket-header">
+                  <h3 className="ticket-subject">{ticket.subject}</h3>
+                  <span className={`ticket-status status-${ticket.status.toLowerCase()}`}>
+                    {ticket.status}
+                  </span>
+                </div>
+                
+                <div className="ticket-meta">
+                  {ticket.orderNumber && (
+                    <span className="ticket-order-number">Order #: {ticket.orderNumber}</span>
+                  )}
+                  <span className="ticket-replies">
+                    {ticket.replies?.length || 0} {ticket.replies?.length === 1 ? 'reply' : 'replies'}
+                  </span>
+                  <span className="ticket-date">
+                    Created: {new Date(ticket.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

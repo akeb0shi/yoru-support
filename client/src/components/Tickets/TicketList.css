@@ -14,6 +14,31 @@
   margin: 1rem;
 }
 
+.ticket-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.create-ticket-button {
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.create-ticket-button:hover {
+  background-color: #4338ca;
+}
+
 .create-ticket-link {
   display: inline-block;
   margin-top: 1rem;
@@ -154,6 +179,15 @@
 }
 
 @media (max-width: 768px) {
+  .ticket-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .create-ticket-button {
+    width: 100%;
+  }
+  
   .ticket-header {
     flex-direction: column;
     gap: 0.5rem;
