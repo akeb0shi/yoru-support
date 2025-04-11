@@ -89,7 +89,7 @@ function CreateTicket() { // base Ticket creation function
             name="subject"
             className="form-input"
             value={formData.subject}
-            onChange={handleChange}
+            onChange={ticketChange}
             required
             maxLength="100"
           />
@@ -102,7 +102,7 @@ function CreateTicket() { // base Ticket creation function
             name="message"
             className="form-textarea"
             value={formData.message}
-            onChange={handleChange}
+            onChange={ticketChange}
             required
             rows="6"
           />
@@ -116,7 +116,7 @@ function CreateTicket() { // base Ticket creation function
             name="orderNumber"
             className="form-input"
             value={formData.orderNumber}
-            onChange={handleChange}
+            onChange={ticketChange}
             pattern="\d*"
             title="Please enter numbers only"
           />
