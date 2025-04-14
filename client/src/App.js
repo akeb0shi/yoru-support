@@ -5,6 +5,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import TicketList from './components/Tickets/TicketList';
 import CreateTicket from './components/Tickets/CreateTicket';
+import TicketDetail from './components/Tickets/TicketDetail';
 
 
 function App() {
