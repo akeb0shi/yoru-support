@@ -178,6 +178,30 @@
   text-align: center;
 }
 
+.ticket-content {
+  padding: 1rem;
+  width: 100%;
+}
+
+.view-ticket-button {
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  max-width: 150px;
+}
+
+.view-ticket-button:hover {
+  background-color: #4338ca;
+}
+
 @media (max-width: 768px) {
   .ticket-list-header {
     flex-direction: column;
@@ -200,5 +224,9 @@
 
   .ticket-link {
     padding: 1rem;
+  }
+
+  .view-ticket-button {
+    max-width: 100%;
   }
 }

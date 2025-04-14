@@ -5,18 +5,18 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import TicketList from './components/Tickets/TicketList';
 import CreateTicket from './components/Tickets/CreateTicket';
-// import Guest from './pages/Guest'
+
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<TicketList />} />
         <Route path="/submit" element={<CreateTicket />} />
-        {/* <Route path="/guest" element={<Guest />} /> */}
+        <Route path="/tickets/:id" element={<TicketDetail />} />
       </Routes>
     </Router>
     

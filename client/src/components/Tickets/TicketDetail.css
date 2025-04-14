@@ -1,0 +1,133 @@
+.ticket-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #4f46e5;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .back-button:hover {
+    text-decoration: underline;
+  }
+  
+  .ticket-detail-card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  .ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .ticket-subject {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .ticket-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  .ticket-message {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .ticket-message h3 {
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  
+  .ticket-replies h3 {
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  
+  .reply-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .reply-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .reply-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .reply-author {
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .no-replies {
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  .status-open {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .status-in_progress {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  
+  .status-resolved {
+    background: #dcfce7;
+    color: #166534;
+  }
+  
+  .ticket-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  @media (max-width: 640px) {
+    .ticket-detail-card {
+      padding: 1.5rem;
+    }
+    
+    .ticket-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .ticket-meta {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }

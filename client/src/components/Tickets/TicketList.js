@@ -37,6 +37,10 @@ function TicketList() { // base TicketList creation function
     fetchTickets();
   }, []);
 
+  const handleViewTicket = (ticketId) => {
+    navigate(`/tickets/${ticketId}`);
+  };
+
   if (loading) {
     return (
       <div className="loading-state">
@@ -50,18 +54,7 @@ function TicketList() { // base TicketList creation function
     return <div className="error">Error: {error}</div>;
   }
 
-  if (tickets === null || tickets.length === 0) { // for if there are no tickets
-    return (
-      <div className="empty-tickets">
-        <p>No tickets found.</p>
-        <Link to="/submit" className="create-ticket-link">
-          Create your first ticket
-        </Link>
-      </div>
-    );
-  }
-
-  return ( // formatting for the tickets
+  return (
     <div className="ticket-list-container">
       <div className="ticket-list-header">
         <h2 className="ticket-list-title">Your Support Tickets</h2>
@@ -84,7 +77,7 @@ function TicketList() { // base TicketList creation function
         <ul className="ticket-list">
           {tickets.map(ticket => (
             <li key={ticket.id} className="ticket-list-item">
-              <Link to={`/tickets/${ticket.id}`} className="ticket-link">
+              <div className="ticket-content">
                 <div className="ticket-header">
                   <h3 className="ticket-subject">{ticket.subject}</h3>
                   <span className={`ticket-status status-${ticket.status.toLowerCase()}`}>
@@ -103,7 +96,13 @@ function TicketList() { // base TicketList creation function
                     Created: {new Date(ticket.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-              </Link>
+                <button 
+                  onClick={() => handleViewTicket(ticket.id)}
+                  className="view-ticket-button"
+                >
+                  View Details
+                </button>
+              </div>
             </li>
           ))}
         </ul>
