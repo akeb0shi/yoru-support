@@ -114,6 +114,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   text-transform: uppercase;
+  margin-left: auto;
 }
 
 .status-open {
