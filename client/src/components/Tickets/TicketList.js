@@ -79,10 +79,12 @@ function TicketList() { // base TicketList creation function
             <li key={ticket.id} className="ticket-list-item">
               <div className="ticket-content">
                 <div className="ticket-header">
-                  <h3 className="ticket-subject">{ticket.subject}</h3>
-                  <span className={`ticket-status status-${ticket.status.toLowerCase()}`}>
-                    {ticket.status}
-                  </span>
+                  <div className="ticket-subject-wrapper">
+                    <h3 className="ticket-subject">{ticket.subject}</h3>
+                    <span className={`ticket-status status-${ticket.status.toLowerCase()}`}>
+                      {ticket.status}
+                    </span>
+                  </div>
                 </div>
                 
                 <div className="ticket-meta">
