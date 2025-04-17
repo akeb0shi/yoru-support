@@ -115,6 +115,9 @@
   flex-grow: 1;
   min-width: 0;
   word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ticket-status {
@@ -125,7 +128,7 @@
   font-weight: 600;
   text-transform: uppercase;
   flex-shrink: 0;
-  margin-left: auto;
+  margin-left: 0.5rem;
 }
 
 .status-open {
