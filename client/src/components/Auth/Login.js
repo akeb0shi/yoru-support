@@ -34,6 +34,8 @@ function Login() { // base Login function
         credentials: 'include',
         body: JSON.stringify(formData)
       });
+
+      await new Promise(resolve => setTimeout(resolve, 500)); // delay to make sure cookie is there
   
       const isJson = response.headers.get('content-type')?.includes('application/json');
       const data = isJson ? await response.json() : null;
