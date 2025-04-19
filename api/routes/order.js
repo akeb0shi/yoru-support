@@ -28,19 +28,32 @@ router.get('/', requireAuth, async (req, res) => {
 
 // get a specific order
 router.get('/:orderNumber', requireAuth, async (req, res) => {
-  const { orderNumber } = req.params;
+  const orderNumber = parseInt(req.params.orderNumber);
+  const { zip } = req.query;
 
   try {
     const order = await prisma.order.findUnique({
-      where: { orderNumber: parseInt(orderNumber) }
+      where: { orderNumber }
     });
 
-    if (!order) return res.status(404).json({ error: 'Order not found' });
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
 
-    res.json(order);
+    // SUPPORT users can always view
+    if (req.user.role === 'SUPPORT') {
+      return res.json(order);
+    }
+
+    // CUSTOMERs must verify zip
+    if (!zip || order.shippingAddress?.indexOf(zip) === -1) {
+      return res.status(403).json({ error: 'Incorrect ZIP code' });
+    }
+
+    return res.json(order);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch order' });
+    return res.status(500).json({ error: 'Failed to retrieve order info' });
   }
 });
 
