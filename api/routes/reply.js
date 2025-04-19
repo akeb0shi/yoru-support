@@ -31,7 +31,7 @@ router.post('/:ticketId', requireAuth, async (req, res) => {
         message,
       },
       include: {
-        select: { name: true } 
+        user: true
       }
     });
 
@@ -66,10 +66,6 @@ router.get('/:ticketId', requireAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch replies' });
   }
-});
-
-router.get('/test', (req, res) => {
-  res.send('Reply route is working!');
 });
 
 module.exports = router;
