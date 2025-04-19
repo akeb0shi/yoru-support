@@ -132,7 +132,15 @@ function TicketDetail() {
               {ticket.replies.map(reply => (
                 <li key={reply.id} className="reply-item">
                   <div className="reply-meta">
-                    <span className="reply-author">{reply.user?.name}</span>
+                  <span
+                    className={
+                      reply.user?.role === 'SUPPORT'
+                        ? 'reply-author support-badge'
+                        : 'reply-author'
+                    }
+                  >
+                    {reply.user?.name}
+                  </span>
                     <span className="reply-date">
                       {new Date(reply.createdAt).toLocaleString()}
                     </span>
