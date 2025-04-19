@@ -44,7 +44,7 @@ function TicketDetail() {
 
   // reply submission handling
   const handleReplySubmit = async () => {
-    if (!replyText.trim()) {
+    if (!replyMessage.trim()) {
       setReplyError('Reply cannot be empty');
       return;
     }
@@ -56,7 +56,7 @@ function TicketDetail() {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({ message: replyText })
+        body: JSON.stringify({ message: replyMessage })
       });
   
       const data = await response.json();
@@ -69,7 +69,7 @@ function TicketDetail() {
         ...prev,
         replies: [...prev.replies, data] // add new reply to the ticket
       }));
-      setReplyText('');
+      setReplyMessage('');
       setReplyError('');
     } catch (err) {
       setReplyError(err.message);
