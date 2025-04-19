@@ -10,9 +10,9 @@ function TicketDetail() {
   const navigate = useNavigate();
 
   // reply stuff
-  const [replyText, setReplyText] = useState('');
+  const [replyMessage, setReplyMessage] = useState('');
   const [replyError, setReplyError] = useState('');
-
+  
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -153,11 +153,11 @@ function TicketDetail() {
           <textarea
             rows="4"
             placeholder="Write your reply..."
-            value={replyText}
-            onChange={(e) => setReplyText(e.target.value)}
-            className="reply-textarea"
+            value={replyMessage}
+            onChange={(e) => setReplyMessage(e.target.value)}
+            className="reply-input"
           />
-          <button onClick={handleReplySubmit} className="reply-submit-button">
+          <button onClick={handleReplySubmit} className="send-reply-button">
             Send Reply
           </button>
           {replyError && <p className="reply-error">{replyError}</p>}
