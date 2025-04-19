@@ -66,9 +66,14 @@ router.get('/:id', requireAuth, async (req, res) => {
     const ticket = await prisma.ticket.findUnique({
       where: { id },
       include: {
-        replies: true,
+        replies: {
+          include: {
+            user: true
+          }
+        },
         user: true
       }
+      
     });
 
     if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
