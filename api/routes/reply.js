@@ -68,4 +68,8 @@ router.get('/:ticketId', requireAuth, async (req, res) => {
   }
 });
 
+router.get('/test', (req, res) => {
+  res.send('Reply route is working!');
+});
+
 module.exports = router;

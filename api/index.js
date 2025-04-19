@@ -13,6 +13,7 @@ const allowedOrigins = ['https://yoruapparel.com', 'https://www.yoruapparel.com'
 
 const userRoutes = require('./routes/user');
 const ticketRoutes = require('./routes/ticket'); 
+const replyRoutes = require('./routes/reply');
 
 
 
@@ -27,6 +28,7 @@ app.use(express.json());
 
 app.use('/api', userRoutes);
 app.use('/api/tickets', ticketRoutes);
+app.use('/api/replies', replyRoutes);
 
 
 // Test endpoint
