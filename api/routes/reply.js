@@ -31,7 +31,7 @@ router.post('/:ticketId', requireAuth, async (req, res) => {
         message,
       },
       include: {
-        user: true
+        select: { name: true } 
       }
     });
 
