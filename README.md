@@ -12,7 +12,7 @@ P: Woah!ThisWorks_556
 U: dylan.z.kao@gmail.com\
 P: 12345
 
-**User login 2**\
+**User login 2 (they do not have any tickets)**\
 U: watson.maung@gmail.com\
 P: 1qaz2wsx
 

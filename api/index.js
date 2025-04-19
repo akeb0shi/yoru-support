@@ -15,36 +15,12 @@ const userRoutes = require('./routes/user');
 const ticketRoutes = require('./routes/ticket'); 
 
 
-// Middleware
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       console.log('✅ CORS allowed');
-//       callback(null, true);
-//     } else {
-//       console.log('❌ CORS blocked');
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true,
-// }));
-
 
 app.use(cors({
   origin: 'https://yoru-support.onrender.com',
   credentials: true
 }));
 
-// app.options('*', cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true
-// }));
 
 app.use(cookieParser());
 app.use(express.json());

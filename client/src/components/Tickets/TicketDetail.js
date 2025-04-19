@@ -9,6 +9,38 @@ function TicketDetail() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // order sidebar data
+  const [zipInput, setZipInput] = useState('');
+  const [zipVerified, setZipVerified] = useState(false);
+  const [orderInfo, setOrderInfo] = useState(null);
+  
+
+  // zip code confirmation 
+  const handleVerifyZip = async () => {
+    try {
+      const res = await fetch(`https://your-api.com/orders/${ticket.orderNumber}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add auth headers if needed
+        }
+      });
+  
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to fetch order info');
+  
+      if (data.shippingZip === zipInput.trim()) {
+        setZipVerified(true);
+        setOrderInfo(data); // store full order info for display
+      } else {
+        alert('ZIP code does not match this order.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error verifying order.');
+    }
+  };
+
   useEffect(() => {
     const fetchTicket = async () => {
       try {
@@ -107,6 +139,29 @@ function TicketDetail() {
             <p className="no-replies">No replies yet</p>
           )}
         </div>
+        {!zipVerified && user?.role !== 'SUPPORT' && (
+          <div className="zip-auth-box">
+            <p>Enter your ZIP code to view order details:</p>
+            <input
+              type="text"
+              value={zipInput}
+              onChange={e => setZipInput(e.target.value)}
+              placeholder="ZIP Code"
+            />
+            <button onClick={handleVerifyZip}>Verify</button>
+          </div>
+        )}
+        {(zipVerified || user?.role === 'SUPPORT') && orderInfo && (
+          <aside className="order-sidebar">
+            <h3>Order Information</h3>
+            <p><strong>Shipping Address:</strong> {orderInfo.shippingAddress}</p>
+            <p><strong>Billing Address:</strong> {orderInfo.billingAddress || 'Same as shipping address'}</p>
+            <p><strong>Subtotal:</strong> ${orderInfo.subtotal.toFixed(2)}</p>
+            <p><strong>Shipping Cost:</strong> ${orderInfo.shippingCost.toFixed(2)}</p>
+            <p><strong>Tracking Number:</strong> {orderInfo.tracking || 'Not yet shipped'}</p>
+
+          </aside>
+        )}
       </div>
     </div>
   );

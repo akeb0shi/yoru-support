@@ -109,7 +109,7 @@ function CreateTicket() { // base Ticket creation function
         </div>
 
         <div className="form-group">
-          <label htmlFor="orderNumber" className="form-label">Order Number (optional)</label>
+          <label htmlFor="orderNumber" className="form-label">Order Number*</label>
           <input
             type="text"
             id="orderNumber"

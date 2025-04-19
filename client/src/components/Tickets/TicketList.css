@@ -244,4 +244,39 @@
   .view-ticket-button {
     max-width: 100%;
   }
+
+  .order-sidebar {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    max-width: 400px;
+    font-size: 0.95rem;
+    color: #1f2937;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+  
+  .order-sidebar h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  
+  .order-sidebar p {
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  
+  .order-sidebar strong {
+    color: #374151;
+  }
+  
+  @media (max-width: 768px) {
+    .order-sidebar {
+      max-width: 100%;
+      padding: 1rem;
+    }
+  }
 }
