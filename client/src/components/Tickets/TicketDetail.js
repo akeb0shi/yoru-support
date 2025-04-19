@@ -9,6 +9,11 @@ function TicketDetail() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // reply stuff
+  const [replyText, setReplyText] = useState('');
+  const [replyError, setReplyError] = useState('');
+
+
   useEffect(() => {
     const fetchTicket = async () => {
       try {
@@ -36,6 +41,41 @@ function TicketDetail() {
 
     fetchTicket();
   }, [id]);
+
+  // reply submission handling
+  const handleReplySubmit = async () => {
+    if (!replyText.trim()) {
+      setReplyError('Reply cannot be empty');
+      return;
+    }
+  
+    try {
+      const response = await fetch(`https://support-9hv8.onrender.com/api/replies/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({ message: replyText })
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to send reply');
+      }
+  
+      setTicket(prev => ({
+        ...prev,
+        replies: [...prev.replies, data] // add new reply to the ticket
+      }));
+      setReplyText('');
+      setReplyError('');
+    } catch (err) {
+      setReplyError(err.message);
+    }
+  };
+  
 
   if (loading) {
     return (
@@ -107,6 +147,22 @@ function TicketDetail() {
             <p className="no-replies">No replies yet</p>
           )}
         </div>
+        
+        <div className="ticket-reply-form">
+          <h3>Leave a Reply</h3>
+          <textarea
+            rows="4"
+            placeholder="Write your reply..."
+            value={replyText}
+            onChange={(e) => setReplyText(e.target.value)}
+            className="reply-textarea"
+          />
+          <button onClick={handleReplySubmit} className="reply-submit-button">
+            Send Reply
+          </button>
+          {replyError && <p className="reply-error">{replyError}</p>}
+        </div>
+
       </div>
     </div>
   );
